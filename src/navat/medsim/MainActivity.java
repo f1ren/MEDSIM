@@ -22,6 +22,9 @@ public class MainActivity extends Activity {
 	private static String ROOT_PATH = Environment.getExternalStorageDirectory().getPath() + "/medsim";
 	private String module = new String();
 	private String application = new String();
+	private IntHolder applicationIndex = new IntHolder(-1);
+	private IntHolder moduleIndex = new IntHolder(-1);
+	private IntHolder lessonIndex = new IntHolder(-1);
 	
 	private FileFilter foldersFileFilter = new FileFilter() {
 	    public boolean accept(File file) {
@@ -47,9 +50,9 @@ public class MainActivity extends Activity {
     	return result;
 	}
 	
-	private void setListDir(ListView listView, String path, FileFilter fileFilter) {
+	private void setListDir(ListView listView, String path, FileFilter fileFilter, IntHolder position, int icon) {
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                android.R.layout.simple_list_item_1, getDir(path, fileFilter));
+                android.R.layout.simple_list_item_1, getDir(path, fileFilter), position, icon);
         listView.setAdapter(adapter);
 	}
 	
@@ -61,17 +64,17 @@ public class MainActivity extends Activity {
         final ListView lstApplications = (ListView) findViewById(R.id.lstApplications);
         final ListView lstModules = (ListView) findViewById(R.id.lstModules);
         final ListView lstLessons = (ListView) findViewById(R.id.lstLessons);
-        lstApplications.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         
-        setListDir(lstApplications, ROOT_PATH, foldersFileFilter);
+        setListDir(lstApplications, ROOT_PATH, foldersFileFilter, applicationIndex, R.drawable.application);
         
         lstApplications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //@Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              setListDir(lstModules, ROOT_PATH + "/" + item, foldersFileFilter);
+              setListDir(lstModules, ROOT_PATH + "/" + item, foldersFileFilter, moduleIndex, R.drawable.module);
               application = item;
+              applicationIndex.value = position;
             }
         });
 
@@ -80,8 +83,9 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              setListDir(lstLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter);
+              setListDir(lstLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter, lessonIndex, R.drawable.lesson);
               module = item;
+              moduleIndex.value = position;
             }
         });
         
