@@ -46,9 +46,9 @@ public class StableArrayAdapter extends ArrayAdapter {
           .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       View rowView = inflater.inflate(R.layout.row, parent, false);
       TextView textView = (TextView) rowView.findViewById(R.id.label);
-      ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+      //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
       textView.setText((String)getItem(position));
-      imageView.setImageResource(this.icon);
+      //imageView.setImageResource(this.icon);
       if (position == this.selectedPosition.value) {
     	  rowView.setBackgroundColor(0xA0D5EFFD);
       }

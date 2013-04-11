@@ -1,70 +1,84 @@
-<TableLayout android:background="@drawable/background" xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout android:background="@drawable/background" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:stretchColumns="0,1,2" >
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dip">
 
-        <TextView
-            android:id="@+id/textView1"
-        android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Applications"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-<TextView
-            android:id="@+id/textView2"
-        android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modules"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-<TextView
-            android:id="@+id/textView3"
-        android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lessons"
-            android:textAppearance="?android:attr/textAppearanceLarge" />    
-    </TableRow>
-  <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dip">
-    <ListView
-        android:id="@+id/lstApplications"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:choiceMode="singleChoice"
-        android:listSelector="@android:color/darker_gray" >
-    </ListView>
+    <ImageView
+        android:id="@+id/iconApplication"
+        android:layout_width="32px"
+        android:layout_height="42px"
+        android:background="#0A101010"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/application" >
 
-    <ListView
-        android:id="@+id/lstModules"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:choiceMode="singleChoice" >
-    </ListView>
-    
-    <ListView
-        android:id="@+id/lstLessons"
+    </ImageView>
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
+        android:layout_height="42px"
+        android:gravity="center_vertical"
+        android:background="#0A101010"
+        android:text="Applications"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_toRightOf="@+id/iconApplication" />
+
+<GridView
+        android:id="@+id/grdApplications"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:choiceMode="singleChoice" >
-    </ListView>
-    </TableRow>
-   <TableRow
-        android:id="@+id/tableRow3"
-        android:layout_width="wrap_content"
+        android:numColumns="3"
+        android:layout_below="@+id/textView1" >
+    </GridView>
+    <ImageView
+        android:id="@+id/iconModules"
+        android:layout_width="32px"
+        android:layout_height="42px"
+        android:background="#0A101010"
+        android:layout_below="@+id/grdApplications"
+        android:src="@drawable/module" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="42px"
+        android:gravity="center_vertical"
+        android:background="#0A101010"
+        android:text="Modules"
+        android:layout_below="@+id/grdApplications"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_toRightOf="@+id/iconModules" />
+    
+    <GridView
+        android:id="@+id/grdModules"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dip">
-    </TableRow>
+        android:layout_below="@+id/textView2"
+        android:numColumns="3" >
+    </GridView>
+    <ImageView
+        android:id="@+id/iconLessons"
+        android:layout_width="32px"
+        android:layout_height="42px"
+        android:background="#0A101010"
+        android:layout_below="@+id/grdModules"
+        android:src="@drawable/lesson" />
+<TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="42px"
+        android:gravity="center_vertical"
+        android:background="#0A101010"
+        android:text="Lessons"
+        android:layout_below="@+id/grdModules"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_toRightOf="@+id/iconLessons" />
+    
+    <GridView
+        android:id="@+id/grdLessons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:numColumns="3" >
+    </GridView>
 
-
-
-</TableLayout>
+</RelativeLayout>

@@ -17,7 +17,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -53,7 +55,7 @@ public class MainActivity extends Activity {
     	return result;
 	}
 	
-	private void setListDir(ListView listView, String path, FileFilter fileFilter, IntHolder position, int icon) {
+	private void setListDir(AbsListView listView, String path, FileFilter fileFilter, IntHolder position, int icon) {
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, getDir(path, fileFilter), position, icon);
         listView.setAdapter(adapter);
@@ -67,35 +69,35 @@ public class MainActivity extends Activity {
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         
-        final ListView lstApplications = (ListView) findViewById(R.id.lstApplications);
-        final ListView lstModules = (ListView) findViewById(R.id.lstModules);
-        final ListView lstLessons = (ListView) findViewById(R.id.lstLessons);
+        final GridView grdApplications = (GridView) findViewById(R.id.grdApplications);
+        final GridView grdModules = (GridView) findViewById(R.id.grdModules);
+        final GridView grdLessons = (GridView) findViewById(R.id.grdLessons);
         
-        setListDir(lstApplications, ROOT_PATH, foldersFileFilter, applicationIndex, R.drawable.application);
+        setListDir(grdApplications, ROOT_PATH, foldersFileFilter, applicationIndex, R.drawable.application);
         
-        lstApplications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grdApplications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //@Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              setListDir(lstModules, ROOT_PATH + "/" + item, foldersFileFilter, moduleIndex, R.drawable.module);
+              setListDir(grdModules, ROOT_PATH + "/" + item, foldersFileFilter, moduleIndex, R.drawable.module);
               application = item;
               applicationIndex.value = position;
             }
         });
 
-        lstModules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grdModules.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //@Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              setListDir(lstLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter, lessonIndex, R.drawable.lesson);
+              setListDir(grdLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter, lessonIndex, R.drawable.lesson);
               module = item;
               moduleIndex.value = position;
             }
         });
         
-        lstLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        grdLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //@Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
