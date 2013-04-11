@@ -50,7 +50,7 @@ public class StableArrayAdapter extends ArrayAdapter {
       textView.setText((String)getItem(position));
       imageView.setImageResource(this.icon);
       if (position == this.selectedPosition.value) {
-    	  rowView.setBackgroundColor(0xA088D2FB);
+    	  rowView.setBackgroundColor(0xA0D5EFFD);
       }
       return rowView;
     }

@@ -38,7 +38,7 @@
         android:padding="5dip">
     <ListView
         android:id="@+id/lstApplications"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice"
         android:listSelector="@android:color/darker_gray" >
@@ -46,14 +46,14 @@
 
     <ListView
         android:id="@+id/lstModules"
-        android:layout_width="100dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice" >
     </ListView>
     
     <ListView
         android:id="@+id/lstLessons"
-        android:layout_width="100dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice" >
     </ListView>
