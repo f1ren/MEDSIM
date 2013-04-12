@@ -39,6 +39,10 @@ public class StableArrayAdapter extends ArrayAdapter {
     public boolean hasStableIds() {
       return true;
     }
+    
+    private String cleanString(String str) {
+    	return str.replace(".pdf", "").replace(";","\n");
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -47,10 +51,11 @@ public class StableArrayAdapter extends ArrayAdapter {
       View rowView = inflater.inflate(R.layout.row, parent, false);
       TextView textView = (TextView) rowView.findViewById(R.id.label);
       //ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-      textView.setText((String)getItem(position));
+      textView.setText(cleanString((String)getItem(position)));
       //imageView.setImageResource(this.icon);
       if (position == this.selectedPosition.value) {
-    	  rowView.setBackgroundColor(0xA0D5EFFD);
+    	  //rowView.setBackgroundColor(0xA0D5EFFD);
+    	  rowView.setBackgroundResource(R.drawable.rounded);
       }
       return rowView;
     }

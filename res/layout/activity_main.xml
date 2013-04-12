@@ -8,7 +8,7 @@
         android:id="@+id/iconApplication"
         android:layout_width="32px"
         android:layout_height="42px"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:layout_gravity="center_vertical"
         android:src="@drawable/application" >
 
@@ -18,7 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="42px"
         android:gravity="center_vertical"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:text="Applications"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_toRightOf="@+id/iconApplication" />
@@ -26,15 +26,15 @@
 <GridView
         android:id="@+id/grdApplications"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="3"
+        android:layout_height="210px"
+        android:numColumns="4"
         android:layout_below="@+id/textView1" >
     </GridView>
     <ImageView
         android:id="@+id/iconModules"
         android:layout_width="32px"
         android:layout_height="42px"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:layout_below="@+id/grdApplications"
         android:src="@drawable/module" />
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="42px"
         android:gravity="center_vertical"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:text="Modules"
         android:layout_below="@+id/grdApplications"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -51,15 +51,15 @@
     <GridView
         android:id="@+id/grdModules"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110px"
         android:layout_below="@+id/textView2"
-        android:numColumns="3" >
+        android:numColumns="4" >
     </GridView>
     <ImageView
         android:id="@+id/iconLessons"
         android:layout_width="32px"
         android:layout_height="42px"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:layout_below="@+id/grdModules"
         android:src="@drawable/lesson" />
 <TextView
@@ -67,7 +67,7 @@
         android:layout_width="fill_parent"
         android:layout_height="42px"
         android:gravity="center_vertical"
-        android:background="#0A101010"
+        android:background="#C7C7C7"
         android:text="Lessons"
         android:layout_below="@+id/grdModules"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -76,9 +76,9 @@
     <GridView
         android:id="@+id/grdLessons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="700px"
         android:layout_below="@+id/textView3"
-        android:numColumns="3" >
+        android:numColumns="5" >
     </GridView>
 
 </RelativeLayout>

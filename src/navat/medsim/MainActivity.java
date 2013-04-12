@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -81,8 +82,12 @@ public class MainActivity extends Activity {
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
               setListDir(grdModules, ROOT_PATH + "/" + item, foldersFileFilter, moduleIndex, R.drawable.module);
+              grdLessons.setAdapter(null);
               application = item;
               applicationIndex.value = position;
+              moduleIndex.value = -1;
+              lessonIndex.value = -1;
+              ((ArrayAdapter)grdApplications.getAdapter()).notifyDataSetChanged();
             }
         });
 
@@ -91,9 +96,12 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
+              lessonIndex.value = -1;
               setListDir(grdLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter, lessonIndex, R.drawable.lesson);
               module = item;
               moduleIndex.value = position;
+              lessonIndex.value = -1;
+              ((ArrayAdapter)grdModules.getAdapter()).notifyDataSetChanged();
             }
         });
         
@@ -113,11 +121,13 @@ public class MainActivity extends Activity {
             	} else {
             		Toast.makeText(getApplicationContext(), "No PDF reader found", Toast.LENGTH_LONG).show();
             	}
+            	lessonIndex.value = position;
+                ((ArrayAdapter)grdLessons.getAdapter()).notifyDataSetChanged();
             }
         });
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
@@ -132,5 +142,5 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() { //disable back button in this activity
         return;
-    }
+    }*/
 }
