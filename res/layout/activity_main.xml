@@ -1,84 +1,110 @@
-<RelativeLayout android:background="@drawable/background" xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:stretchColumns="0,1,2" >
-
     <ImageView
-        android:id="@+id/iconApplication"
+        android:id="@+id/imageView1"
         android:layout_width="32px"
-        android:layout_height="42px"
-        android:background="#C7C7C7"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/application" >
-
-    </ImageView>
+        android:layout_height="32px"
+        android:layout_marginLeft="35dp"
+        android:layout_above="@+id/grdApplications"
+        android:src="@drawable/application" />
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="42px"
-        android:gravity="center_vertical"
-        android:background="#C7C7C7"
-        android:text="Applications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="@string/applications_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_toRightOf="@+id/iconApplication" />
-
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dip"
+        android:padding="0dip" />
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@drawable/seperator"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="300dp"
+    android:layout_below="@+id/textView1"/>
 <GridView
-        android:id="@+id/grdApplications"
-        android:layout_width="match_parent"
-        android:layout_height="210px"
-        android:numColumns="4"
-        android:layout_below="@+id/textView1" >
+    android:id="@+id/grdApplications"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textView1"
+    android:numColumns="4"
+    android:padding="20dip"
+    android:layout_marginLeft="40dip" >
+
     </GridView>
     <ImageView
-        android:id="@+id/iconModules"
+        android:id="@+id/imageView2"
         android:layout_width="32px"
-        android:layout_height="42px"
-        android:background="#C7C7C7"
-        android:layout_below="@+id/grdApplications"
+        android:layout_height="32px"
+        android:layout_marginLeft="35dp"
+        android:layout_above="@+id/grdModules"
         android:src="@drawable/module" />
-    <TextView
+<TextView
         android:id="@+id/textView2"
-        android:layout_width="fill_parent"
-        android:layout_height="42px"
-        android:gravity="center_vertical"
-        android:background="#C7C7C7"
-        android:text="Modules"
-        android:layout_below="@+id/grdApplications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView2"
+        android:text="@string/modules_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_toRightOf="@+id/iconModules" />
-    
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dip"
+        android:layout_below="@+id/grdApplications"
+        android:padding="0dip" />
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@drawable/seperator"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="300dp"
+    android:layout_below="@+id/textView2"/>
     <GridView
         android:id="@+id/grdModules"
         android:layout_width="match_parent"
-        android:layout_height="110px"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:numColumns="4" >
+        android:numColumns="4"
+    android:padding="20dip"
+    android:layout_marginLeft="40dip" >
     </GridView>
-    <ImageView
-        android:id="@+id/iconLessons"
+        <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="32px"
-        android:layout_height="42px"
-        android:background="#C7C7C7"
-        android:layout_below="@+id/grdModules"
+        android:layout_height="32px"
+        android:layout_marginLeft="35dp"
+        android:layout_above="@+id/grdLessons"
         android:src="@drawable/lesson" />
 <TextView
         android:id="@+id/textView3"
-        android:layout_width="fill_parent"
-        android:layout_height="42px"
-        android:gravity="center_vertical"
-        android:background="#C7C7C7"
-        android:text="Lessons"
-        android:layout_below="@+id/grdModules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView3"
+        android:text="@string/lessons_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_toRightOf="@+id/iconLessons" />
-    
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dip"
+    android:layout_below="@+id/grdModules"
+        android:padding="0dip" />
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@drawable/seperator"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="300dp"
+    android:layout_below="@+id/textView3"/>
     <GridView
         android:id="@+id/grdLessons"
         android:layout_width="match_parent"
-        android:layout_height="700px"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
-        android:numColumns="5" >
+        android:numColumns="4"
+    android:padding="20dip"
+    android:layout_marginLeft="40dip" >
     </GridView>
 
 </RelativeLayout>
