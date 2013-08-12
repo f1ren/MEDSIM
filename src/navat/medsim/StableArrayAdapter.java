@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,18 @@ public class StableArrayAdapter extends ArrayAdapter {
     private int icon;
     public int selectedItem = -1;
     private IntHolder selectedPosition;
+    private int selectedRes;
+    private int notSelectedRes;
 
     public StableArrayAdapter(Context context, int textViewResourceId,
-        List<String> objects, IntHolder position, int listIcon) {
+        List<String> objects, IntHolder position, int listIcon, int selectedRes,
+        int notSelectedRes) {
       super(context, textViewResourceId, objects);
       this.context = context;
       this.icon = listIcon;
       this.selectedPosition = position;
+      this.selectedRes = selectedRes;
+      this.notSelectedRes = notSelectedRes;
       for (int i = 0; i < objects.size(); ++i) {
         mIdMap.put(objects.get(i), i);
       }
@@ -41,6 +47,9 @@ public class StableArrayAdapter extends ArrayAdapter {
     }
     
     private String cleanString(String str) {
+    	if (str.indexOf(';', str.indexOf(';', 0) + 1) != -1) {
+    		str = str.substring(str.indexOf(';') + 1);
+    	}
     	return str.replace(".pdf", "").replace(";","\n");
     }
 
@@ -55,7 +64,9 @@ public class StableArrayAdapter extends ArrayAdapter {
       //imageView.setImageResource(this.icon);
       if (position == this.selectedPosition.value) {
     	  //rowView.setBackgroundColor(0xA0D5EFFD);
-    	  rowView.setBackgroundResource(R.drawable.rounded);
+    	  rowView.setBackgroundResource(selectedRes);
+      } else {
+    	  rowView.setBackgroundResource(notSelectedRes);
       }
       return rowView;
     }

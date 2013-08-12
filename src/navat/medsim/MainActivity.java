@@ -20,46 +20,26 @@ import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	private static String ROOT_PATH = Environment.getExternalStorageDirectory().getPath() + "/medsim";
 	private String module = new String();
 	private String application = new String();
 	private IntHolder applicationIndex = new IntHolder(-1);
 	private IntHolder moduleIndex = new IntHolder(-1);
-	private IntHolder lessonIndex = new IntHolder(-1);
+	public final static String EXTRA_MESSAGE = "navat.medsim.MESSAGE";
 	
 	private FileFilter foldersFileFilter = new FileFilter() {
 	    public boolean accept(File file) {
 	        return file.isDirectory();
 	    }
 	};
-
-	private FileFilter pdfFileFilter = new FileFilter() {
-	    public boolean accept(File file) {
-	        return file.getName().endsWith(".pdf");
-	    }
-	};
 	
-	private ArrayList<String> getDir(String path, FileFilter fileFilter) {
-		ArrayList<String> result = new ArrayList<String>();
-		
-		File dir = new File(path);
-    	File[] files = dir.listFiles(fileFilter);
-    	for (File file : files) {
-    		result.add(file.getName());
-    	}
-    	
-    	return result;
-	}
-	
-	private void setListDir(AbsListView listView, String path, FileFilter fileFilter, IntHolder position, int icon) {
-        final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                android.R.layout.simple_list_item_1, getDir(path, fileFilter), position, icon);
-        listView.setAdapter(adapter);
+	@Override
+	public void onBackPressed() {
 	}
 	
     @Override
@@ -70,23 +50,36 @@ public class MainActivity extends Activity {
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+        
+        /*final Button button = (Button) findViewById(R.id.btnExit);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent intent = new Intent(Intent.ACTION_MAIN);
+            	intent.addCategory(Intent.CATEGORY_HOME);
+            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            	startActivity(intent);
+            }
+        });*/
+        
         final GridView grdApplications = (GridView) findViewById(R.id.grdApplications);
         final GridView grdModules = (GridView) findViewById(R.id.grdModules);
-        final GridView grdLessons = (GridView) findViewById(R.id.grdLessons);
         
-        setListDir(grdApplications, ROOT_PATH, foldersFileFilter, applicationIndex, R.drawable.application);
+        Utils.setListDir(this, grdApplications, Utils.ROOT_PATH, foldersFileFilter, applicationIndex, 
+        		R.drawable.application, R.drawable.selected_application, R.drawable.rounded_application);
         
         grdApplications.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //@Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              setListDir(grdModules, ROOT_PATH + "/" + item, foldersFileFilter, moduleIndex, R.drawable.module);
-              grdLessons.setAdapter(null);
+              Utils.setListDir(MainActivity.this, grdModules, Utils.ROOT_PATH + "/" + item,
+            		  foldersFileFilter, moduleIndex, R.drawable.module, R.drawable.selected_module,
+            		  R.drawable.rounded_module);
+              //grdLessons.setAdapter(null);
               application = item;
               applicationIndex.value = position;
               moduleIndex.value = -1;
-              lessonIndex.value = -1;
               ((ArrayAdapter)grdApplications.getAdapter()).notifyDataSetChanged();
             }
         });
@@ -96,33 +89,14 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               final String item = (String) parent.getItemAtPosition(position);
-              lessonIndex.value = -1;
-              setListDir(grdLessons, ROOT_PATH + "/" + application + "/" + item, pdfFileFilter, lessonIndex, R.drawable.lesson);
+              
+              Intent intent = new Intent(MainActivity.this, CasesActivity.class);
+              intent.putExtra(EXTRA_MESSAGE, Utils.ROOT_PATH + "/" + application + "/" + item);
+              startActivity(intent);
+
               module = item;
               moduleIndex.value = position;
-              lessonIndex.value = -1;
               ((ArrayAdapter)grdModules.getAdapter()).notifyDataSetChanged();
-            }
-        });
-        
-        grdLessons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            //@Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                int position, long id) {
-              final String item = (String) parent.getItemAtPosition(position);
-              File targetFile = new File(ROOT_PATH + "/" + application + "/" + module + "/" + item);
-              Uri targetUri = Uri.fromFile(targetFile);
-              Intent intent = new Intent(Intent.ACTION_VIEW);
-            	intent.setDataAndType(targetUri, "application/pdf");
-            	PackageManager pm = getPackageManager();
-            	List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-            	if (activities.size() > 0) {
-            	    startActivity(intent);
-            	} else {
-            		Toast.makeText(getApplicationContext(), "No PDF reader found", Toast.LENGTH_LONG).show();
-            	}
-            	lessonIndex.value = position;
-                ((ArrayAdapter)grdLessons.getAdapter()).notifyDataSetChanged();
             }
         });
     }

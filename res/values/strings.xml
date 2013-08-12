@@ -3,9 +3,10 @@
     <string name="app_name">MEDSIM</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MEDSIM Lessons</string>
-    <string name="lessons_title">Choose lesson - בחר שיעור</string>
-    <string name="applications_title">Choose application - בחר אפליקציה</string>
-    <string name="modules_title">Choose module - בחר מודול</string>
+    <string name="title_activity_main">UltraSim TaskPad</string>
+    <string name="lessons_title">Choose training case</string>
+    <string name="applications_title">Choose training application</string>
+    <string name="modules_title">Choose training module CD</string>
+    <string name="title_activity_cases">MainActivity</string>
 
 </resources>
