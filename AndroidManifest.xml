@@ -19,7 +19,7 @@ service android:name=".MyService" android:label="My Service">
     <intent-filter>
         <action android:name="com.myapp.MyService" />
     </intent-filter>
-</service
+</service
         -->
 
 
@@ -32,20 +32,19 @@ receiver
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED" />
     </intent-filter>
-</receiver
+</receiver
         -->
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".CasesActivity"
             android:label="@string/title_activity_cases" >
+        </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_welcome" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

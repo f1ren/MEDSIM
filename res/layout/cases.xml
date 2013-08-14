@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_horizontal"
+    android:stretchColumns="0,1,2" >
+
+        <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="32px"
+        android:layout_height="32px"
+        android:layout_marginLeft="35dp"
+        android:layout_above="@+id/grdLessons"
+        android:src="@drawable/lesson" />
+<TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView3"
+        android:text="@string/lessons_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="40dip"
+    android:layout_below="@+id/grdModules"
+        android:padding="0dip" />
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:background="@drawable/seperator"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="300dp"
+    android:layout_below="@+id/textView3"/>
+    <GridView
+        android:id="@+id/grdLessons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+    android:verticalSpacing="10dip"
+    android:horizontalSpacing="10px"
+        android:numColumns="1"
+    android:padding="20dip"
+    android:layout_marginLeft="40dip"
+    android:layout_marginRight="240dip" >
+    </GridView>
+
+
+</RelativeLayout>

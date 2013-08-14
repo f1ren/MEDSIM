@@ -8,5 +8,6 @@
     <string name="applications_title">Choose training application</string>
     <string name="modules_title">Choose training module CD</string>
     <string name="title_activity_cases">MainActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
 
 </resources>
